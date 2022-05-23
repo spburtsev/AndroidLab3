@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidLab3</string>
+    <string name="result_placeholder">result</string>
+    <string name="expression_placeholder">expression</string>
 </resources>
