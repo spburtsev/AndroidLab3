@@ -16,4 +16,8 @@
     <string name="button_2">2</string>
     <string name="button_3">3</string>
     <string name="button_subtract">-</string>
+    <string name="button_dot">.</string>
+    <string name="button_0">0</string>
+    <string name="button_equals">=</string>
+    <string name="button_add">+</string>
 </resources>
