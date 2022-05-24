@@ -2,7 +2,7 @@
     <string name="app_name">AndroidLab3</string>
     <string name="result_placeholder">result</string>
     <string name="expression_placeholder">expression</string>
-    <string name="clear_button">CLEAR</string>
+    <string name="clear_button">C</string>
     <string name="backspace_button"><![CDATA[<<]]></string>
     <string name="button_7">7</string>
     <string name="button_8">8</string>
