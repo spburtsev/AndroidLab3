@@ -8,7 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private  TextView expressionView;
+    private CalculatorState state;
+    private TextView expressionView;
     private TextView resultView;
     private Button[] numericButtons;
 
@@ -18,9 +19,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setInitialText();
-
+        state = new CalculatorState();
         numericButtons = new Button[10];
         setNumericButtonHandlers();
+        setClearButtonHandler();
+        setBackspaceButtonHandler();
+        setOperationButtonHandlers();
+        setDotButtonHandler();
+        setEqualsButtonHandler();
     }
 
     @Override
@@ -49,18 +55,90 @@ public class MainActivity extends AppCompatActivity {
             numericButtons[i].setOnClickListener(v -> {
                 TextView expressionView = findViewById(R.id.expression_text);
                 TextView resultView = findViewById(R.id.result_text);
-                String expression = expressionView.getText().toString();
-                String result = resultView.getText().toString();
-                if (expression.equals("0")) {
-                    expression = "";
-                }
-                if (result.equals("0")) {
-                    result = "";
-                }
-                expression += result + ((Button) v).getText();
-                expressionView.setText(expression);
-                resultView.setText("0");
+                state.appendExpression(((Button) v).getText().charAt(0));
+                expressionView.setText(state.getExpression());
+                resultView.setText(state.getResult());
             });
         }
+    }
+
+    private void setClearButtonHandler() {
+        Button clearButton = findViewById(R.id.clear_button);
+        clearButton.setOnClickListener(v -> {
+            state.clear();
+            expressionView.setText(state.getExpression());
+            resultView.setText(state.getResult());
+        });
+    }
+
+    private void setBackspaceButtonHandler() {
+        Button backspaceButton = findViewById(R.id.backspace_button);
+        backspaceButton.setOnClickListener(v -> {
+            TextView expressionView = findViewById(R.id.expression_text);
+
+            TextView resultView = findViewById(R.id.result_text);
+            state.backspace();
+            expressionView.setText(state.getExpression());
+            resultView.setText(state.getResult());
+        });
+    }
+
+    private void setDotButtonHandler() {
+        Button dotButton = findViewById(R.id.button_dot);
+        dotButton.setOnClickListener(v -> {
+            TextView expressionView = findViewById(R.id.expression_text);
+            TextView resultView = findViewById(R.id.result_text);
+            state.appendExpression('.');
+            expressionView.setText(state.getExpression());
+            resultView.setText(state.getResult());
+        });
+    }
+
+    private void setEqualsButtonHandler() {
+        Button equalsButton = findViewById(R.id.button_equals);
+        equalsButton.setOnClickListener(v -> {
+            TextView expressionView = findViewById(R.id.expression_text);
+            TextView resultView = findViewById(R.id.result_text);
+            String res = state.getResult();
+
+            state = new CalculatorState(res);
+            expressionView.setText(state.getExpression());
+            resultView.setText(state.getResult());
+        });
+    }
+
+    private void setOperationButtonHandlers() {
+        Button plusButton = findViewById(R.id.button_add);
+        plusButton.setOnClickListener(v -> {
+            TextView expressionView = findViewById(R.id.expression_text);
+            TextView resultView = findViewById(R.id.result_text);
+            state.appendExpression('+');
+            expressionView.setText(state.getExpression());
+            resultView.setText(state.getResult());
+        });
+        Button minusButton = findViewById(R.id.button_subtract);
+        minusButton.setOnClickListener(v -> {
+            TextView expressionView = findViewById(R.id.expression_text);
+            TextView resultView = findViewById(R.id.result_text);
+            state.appendExpression('-');
+            expressionView.setText(state.getExpression());
+            resultView.setText(state.getResult());
+        });
+        Button multiplyButton = findViewById(R.id.button_multiply);
+        multiplyButton.setOnClickListener(v -> {
+            TextView expressionView = findViewById(R.id.expression_text);
+            TextView resultView = findViewById(R.id.result_text);
+            state.appendExpression('*');
+            expressionView.setText(state.getExpression());
+            resultView.setText(state.getResult());
+        });
+        Button divideButton = findViewById(R.id.button_divide);
+        divideButton.setOnClickListener(v -> {
+            TextView expressionView = findViewById(R.id.expression_text);
+            TextView resultView = findViewById(R.id.result_text);
+            state.appendExpression('/');
+            expressionView.setText(state.getExpression());
+            resultView.setText(state.getResult());
+        });
     }
 }
