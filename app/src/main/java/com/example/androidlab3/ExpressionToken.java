@@ -1,5 +1,7 @@
 package com.example.androidlab3;
 
+import androidx.annotation.NonNull;
+
 public class ExpressionToken {
     private String token;
     private TokenType type;
@@ -9,6 +11,7 @@ public class ExpressionToken {
         this.type = type;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "(Token:" + token + " of type " + type + ")";
