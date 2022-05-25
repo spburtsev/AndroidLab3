@@ -1,5 +1,7 @@
 package com.example.androidlab3;
 
+import androidx.annotation.NonNull;
+
 public enum TokenType {
     ADD,
     SUB,
@@ -7,6 +9,7 @@ public enum TokenType {
     DIV,
     VALUE;
 
+    @NonNull
     @Override
     public String toString() {
         switch (this.ordinal()) {
@@ -51,7 +54,7 @@ public enum TokenType {
             case '/':
                 return TokenType.DIV;
             default:
-                return null;
+                return TokenType.VALUE;
         }
     }
 

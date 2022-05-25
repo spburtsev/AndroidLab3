@@ -18,9 +18,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setInitialText();
+        expressionView = findViewById(R.id.expression_text);
+        resultView = findViewById(R.id.result_text);
+
         state = new CalculatorState();
         numericButtons = new Button[10];
+        expressionView.setText(state.getExpression());
+        resultView.setText(state.getResult());
+
         setNumericButtonHandlers();
         setClearButtonHandler();
         setBackspaceButtonHandler();
@@ -37,13 +42,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-    }
-
-    private void setInitialText() {
-        expressionView = findViewById(R.id.expression_text);
-        resultView = findViewById(R.id.result_text);
-        expressionView.setText("0");
-        resultView.setText("0");
     }
 
     private void setNumericButtonHandlers() {
@@ -74,9 +72,6 @@ public class MainActivity extends AppCompatActivity {
     private void setBackspaceButtonHandler() {
         Button backspaceButton = findViewById(R.id.backspace_button);
         backspaceButton.setOnClickListener(v -> {
-            TextView expressionView = findViewById(R.id.expression_text);
-
-            TextView resultView = findViewById(R.id.result_text);
             state.backspace();
             expressionView.setText(state.getExpression());
             resultView.setText(state.getResult());
@@ -86,8 +81,6 @@ public class MainActivity extends AppCompatActivity {
     private void setDotButtonHandler() {
         Button dotButton = findViewById(R.id.button_dot);
         dotButton.setOnClickListener(v -> {
-            TextView expressionView = findViewById(R.id.expression_text);
-            TextView resultView = findViewById(R.id.result_text);
             state.appendExpression('.');
             expressionView.setText(state.getExpression());
             resultView.setText(state.getResult());
@@ -97,8 +90,6 @@ public class MainActivity extends AppCompatActivity {
     private void setEqualsButtonHandler() {
         Button equalsButton = findViewById(R.id.button_equals);
         equalsButton.setOnClickListener(v -> {
-            TextView expressionView = findViewById(R.id.expression_text);
-            TextView resultView = findViewById(R.id.result_text);
             String res = state.getResult();
 
             state = new CalculatorState(res);
@@ -110,32 +101,24 @@ public class MainActivity extends AppCompatActivity {
     private void setOperationButtonHandlers() {
         Button plusButton = findViewById(R.id.button_add);
         plusButton.setOnClickListener(v -> {
-            TextView expressionView = findViewById(R.id.expression_text);
-            TextView resultView = findViewById(R.id.result_text);
             state.appendExpression('+');
             expressionView.setText(state.getExpression());
             resultView.setText(state.getResult());
         });
         Button minusButton = findViewById(R.id.button_subtract);
         minusButton.setOnClickListener(v -> {
-            TextView expressionView = findViewById(R.id.expression_text);
-            TextView resultView = findViewById(R.id.result_text);
             state.appendExpression('-');
             expressionView.setText(state.getExpression());
             resultView.setText(state.getResult());
         });
         Button multiplyButton = findViewById(R.id.button_multiply);
         multiplyButton.setOnClickListener(v -> {
-            TextView expressionView = findViewById(R.id.expression_text);
-            TextView resultView = findViewById(R.id.result_text);
             state.appendExpression('*');
             expressionView.setText(state.getExpression());
             resultView.setText(state.getResult());
         });
         Button divideButton = findViewById(R.id.button_divide);
         divideButton.setOnClickListener(v -> {
-            TextView expressionView = findViewById(R.id.expression_text);
-            TextView resultView = findViewById(R.id.result_text);
             state.appendExpression('/');
             expressionView.setText(state.getExpression());
             resultView.setText(state.getResult());

@@ -5,6 +5,7 @@ public class CalculatorState {
     private String result;
 
     public CalculatorState() {
+        setExpression("0");
     }
 
     public CalculatorState(String expression) {
@@ -17,7 +18,7 @@ public class CalculatorState {
 
     private void setExpression(String expression) {
         this.expression = expression;
-        result = evaluateExpression();
+        result = evaluateExpression(expression);
     }
 
     public String getExpression() {
@@ -39,17 +40,17 @@ public class CalculatorState {
     }
 
     public void backspace() {
+        String newExpr;
         if (expression.length() > 1) {
-            expression = expression.substring(0, expression.length() - 1);
+            newExpr = expression.substring(0, expression.length() - 1);
         } else {
-            expression = "0";
+            newExpr = "0";
         }
-        result = evaluateExpression();
+        setExpression(newExpr);
     }
 
     public void clear() {
-        expression = "0";
-        result = "0";
+        setExpression("0");
     }
 
     public boolean expressionEndsWithOperator() {
@@ -73,11 +74,10 @@ public class CalculatorState {
 
     private void appendWithNumber(char number) {
         if (isZero(expression)) {
-            expression = String.valueOf(number);
+            setExpression(String.valueOf(number));
         } else {
-            expression += number;
+            setExpression(expression + number);
         }
-        result = evaluateExpression();
     }
 
     private void appendWithOperator(char operator) {
@@ -98,31 +98,9 @@ public class CalculatorState {
         }
     }
 
-    private String evaluateExpression() {
+    private String evaluateExpression(String expression) {
         Evaluator evaluator = new Evaluator(expression);
-        return String.valueOf(evaluator.evaluate());
-//        String[] tokens = expression.split("[+\\-*/]");
-//        char[] operators = expression.replaceAll("[0-9.]", "").toCharArray();
-//        double result = Double.parseDouble(tokens[0]);
-//
-//        int loops = tokens.length - 1;
-//
-//        for (int i = 0; i < loops; ++i) {
-//            switch (operators[i]) {
-//                case '+':
-//                    result += Double.parseDouble(tokens[i + 1]);
-//                    break;
-//                case '-':
-//                    result -= Double.parseDouble(tokens[i + 1]);
-//                    break;
-//                case '*':
-//                    result *= Double.parseDouble(tokens[i + 1]);
-//                    break;
-//                case '/':
-//                    result /= Double.parseDouble(tokens[i + 1]);
-//                    break;
-//            }
-//        }
-//        return String.valueOf(result);
+        double evaluated = evaluator.evaluate();
+        return String.valueOf(evaluated);
     }
 }

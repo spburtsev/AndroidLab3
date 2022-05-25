@@ -12,10 +12,6 @@ public class Evaluator {
 
     public double evaluate() {
         List<ExpressionToken> tokenizedExpression = tokenized();
-
-        if (tokenizedExpression.size() == 1) {
-            return Double.parseDouble(tokenizedExpression.get(0).getToken());
-        }
         return evaluateExpression(tokenizedExpression);
     }
 
