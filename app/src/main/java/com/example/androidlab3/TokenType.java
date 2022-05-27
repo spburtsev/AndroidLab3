@@ -28,21 +28,6 @@ public enum TokenType {
         }
     }
 
-    public static TokenType fromString(String s) {
-        switch (s) {
-            case "+":
-                return TokenType.ADD;
-            case "-":
-                return TokenType.SUB;
-            case "*":
-                return TokenType.MUL;
-            case "/":
-                return TokenType.DIV;
-            default:
-                return TokenType.VALUE;
-        }
-    }
-
     public static TokenType fromChar(char c) {
         switch (c) {
             case '+':
