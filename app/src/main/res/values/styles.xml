@@ -17,16 +17,27 @@
         <item name="android:layout_columnWeight">2</item>
         <item name="android:layout_rowWeight">1</item>
         <item name="android:textSize">24sp</item>
+        <item name="android:background">#9C3AB7</item>
+    </style>
+
+
+    <style name="ButtonLandscape">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:background">#673AB7</item>
     </style>
 
-    <style name="DeleteLandscape">
-        <item name="android:layout_height">10dp</item>
+    <style name="DeleteButtonLandscape">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_margin">4dp</item>
         <item name="android:layout_columnWeight">2</item>
         <item name="android:layout_rowWeight">1</item>
-        <item name="android:textSize">40sp</item>
-        <item name="android:background">#673AB7</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:background">#9C3AB7</item>
     </style>
+
 </resources>

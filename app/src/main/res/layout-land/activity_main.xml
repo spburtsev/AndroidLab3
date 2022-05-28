@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#202020"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <TextView
+        android:id="@+id/result_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="#202020"
+        android:padding="4dp"
+        android:text="@string/result_placeholder"
+        android:textAlignment="viewEnd"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/expression_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="#202020"
+        android:padding="4dp"
+        android:text="@string/expression_placeholder"
+        android:textAlignment="textEnd"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/result_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="5"
+        android:orientation="horizontal"
+        android:rowCount="5"
+        android:useDefaultMargins="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline">
+
+        <Button
+            android:id="@+id/button_1"
+            android:layout_column="0"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_1" />
+
+        <Button
+            android:id="@+id/button_2"
+            android:layout_column="1"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_2" />
+
+        <Button
+            android:id="@+id/button_3"
+            android:layout_column="2"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_3" />
+
+        <Button
+            android:layout_column="3"
+            android:id="@+id/button_divide"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_divide" />
+
+        <Button
+            android:layout_column="0"
+            android:id="@+id/button_4"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_4" />
+
+        <Button
+            android:layout_column="1"
+            android:id="@+id/button_5"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_5" />
+
+        <Button
+            android:layout_column="2"
+            android:id="@+id/button_6"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_6" />
+
+        <Button
+            android:layout_column="3"
+            android:id="@+id/button_multiply"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_multiply" />
+
+        <Button
+            android:layout_column="0"
+            android:id="@+id/button_7"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_7" />
+
+        <Button
+            android:layout_column="1"
+            android:id="@+id/button_8"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_8" />
+
+        <Button
+            android:layout_column="2"
+            android:id="@+id/button_9"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_9" />
+
+        <Button
+            android:layout_column="3"
+            android:id="@+id/button_subtract"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_subtract" />
+
+        <Button
+            android:layout_column="0"
+            android:id="@+id/button_dot"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_dot" />
+
+        <Button
+            android:layout_column="1"
+            android:id="@+id/button_0"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_0" />
+
+        <Button
+            android:layout_column="2"
+            android:id="@+id/button_equals"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_equals" />
+
+        <Button
+            android:layout_column="3"
+            android:id="@+id/button_add"
+            style="@style/ButtonLandscape"
+            android:text="@string/button_add" />
+
+        <Button
+            android:id="@+id/clear_button"
+            android:layout_column="4"
+            android:layout_row="0"
+            style="@style/DeleteButtonLandscape"
+            android:text="@string/clear_button" />
+
+        <Button
+            android:id="@+id/backspace_button"
+            style="@style/DeleteButtonLandscape"
+            android:layout_column="4"
+            android:layout_row="1"
+            android:text="@string/backspace_button" />
+
+    </GridLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
