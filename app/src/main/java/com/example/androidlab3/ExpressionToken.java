@@ -3,8 +3,8 @@ package com.example.androidlab3;
 import androidx.annotation.NonNull;
 
 public class ExpressionToken {
-    private String token;
-    private TokenType type;
+    private final String token;
+    private final TokenType type;
 
     public ExpressionToken(String token, TokenType type) {
         this.token = token;

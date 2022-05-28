@@ -4,17 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Evaluator {
-    private final String expression;
+    private final Expression expression;
 
-    public Evaluator(String expr) {
-        this.expression = expr;
+    public Evaluator(Expression expression) {
+        this.expression = expression;
     }
 
     public double evaluate() {
-        List<ExpressionToken> tokenizedExpression = tokenized();
+        List<ExpressionToken> tokenizedExpression = expression.getTokenized();
         return evaluateExpression(tokenizedExpression);
     }
-
 
     private double evaluateExpression(List<ExpressionToken> expression) {
         if (expression.size() == 1) {
@@ -67,31 +66,5 @@ public class Evaluator {
             }
         }
         return -1;
-    }
-
-    private List<ExpressionToken> tokenized() {
-        StringBuilder value = new StringBuilder();
-        List<ExpressionToken> tokens = new ArrayList<>();
-
-        for (char c : expression.toCharArray()) {
-            TokenType type = TokenType.fromChar(c);
-            if (!(TokenType.VALUE).equals(type)) {
-                if (value.length() > 0) {
-                    ExpressionToken t = new ExpressionToken(value.toString(), TokenType.VALUE);
-                    tokens.add(t);
-                }
-                value = new StringBuilder(String.valueOf(c));
-                ExpressionToken t = new ExpressionToken(value.toString(), type);
-                tokens.add(t);
-                value = new StringBuilder();
-            } else {
-                value.append(c);
-            }
-        }
-        if (value.length() > 0) {
-            ExpressionToken t = new ExpressionToken(value.toString(), TokenType.VALUE);
-            tokens.add(t);
-        }
-        return tokens;
     }
 }
