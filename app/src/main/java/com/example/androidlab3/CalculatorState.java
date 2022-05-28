@@ -27,16 +27,20 @@ public class CalculatorState {
 
     public void appendExpression(char value) {
         expression.append(value);
-        result = String.valueOf(expression.evaluate());
+        result = getEvaluated();
     }
 
     public void backspace() {
         expression.eraseLastChar();
-        result = String.valueOf(expression.evaluate());
+        result = getEvaluated();
     }
 
     public void clear() {
         expression.erase();
-        result = String.valueOf(expression.evaluate());
+        result = getEvaluated();
+    }
+
+    private String getEvaluated() {
+        return String.valueOf(expression.evaluate());
     }
 }

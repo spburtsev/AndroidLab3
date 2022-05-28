@@ -69,7 +69,11 @@ public class Expression {
     }
 
     public String evaluate() {
-        Evaluator evaluator = new Evaluator(this);
+        Expression expr = this;
+        if (endsWithOperator(stringified)) {
+            expr = new Expression(stringified.substring(0, stringified.length() - 1));
+        }
+        Evaluator evaluator = new Evaluator(expr);
         double evaluated = evaluator.evaluate();
         return String.valueOf(evaluated);
     }
@@ -96,7 +100,7 @@ public class Expression {
     }
 
     private void appendWithDecimalPoint() {
-        if (stringified.contains(".")) {
+        if (lastTokenHasDecimalPoint()) {
             return;
         }
         if (endsWithOperator(stringified)) {
@@ -104,6 +108,12 @@ public class Expression {
         } else {
             stringified += '.';
         }
+    }
+
+    private boolean lastTokenHasDecimalPoint() {
+        List<ExpressionToken> tokenized = getTokenized();
+        ExpressionToken lastToken = tokenized.get(tokenized.size() - 1);
+        return lastToken.getType().equals(TokenType.VALUE) && lastToken.getToken().contains(".");
     }
 
     private static boolean isZero(String value) {
