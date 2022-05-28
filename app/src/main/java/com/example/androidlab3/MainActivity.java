@@ -1,6 +1,7 @@
 package com.example.androidlab3;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView expressionView;
     private TextView resultView;
     private Button[] numericButtons;
+
+    private static final String EXPRESSION_KEY = "expression";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +40,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putString(EXPRESSION_KEY, expressionView.getText().toString());
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        state = new CalculatorState(savedInstanceState.getString(EXPRESSION_KEY));
+        expressionView.setText(state.getExpression());
+        resultView.setText(state.getResult());
     }
 
     private void setNumericButtonHandlers() {
@@ -100,28 +107,23 @@ public class MainActivity extends AppCompatActivity {
 
     private void setOperationButtonHandlers() {
         Button plusButton = findViewById(R.id.button_add);
-        plusButton.setOnClickListener(v -> {
-            state.appendExpression('+');
-            expressionView.setText(state.getExpression());
-            resultView.setText(state.getResult());
-        });
+        plusButton.setOnClickListener(getClickListener('+'));
+
         Button minusButton = findViewById(R.id.button_subtract);
-        minusButton.setOnClickListener(v -> {
-            state.appendExpression('-');
-            expressionView.setText(state.getExpression());
-            resultView.setText(state.getResult());
-        });
+        minusButton.setOnClickListener(getClickListener('-'));
+
         Button multiplyButton = findViewById(R.id.button_multiply);
-        multiplyButton.setOnClickListener(v -> {
-            state.appendExpression('*');
-            expressionView.setText(state.getExpression());
-            resultView.setText(state.getResult());
-        });
+        multiplyButton.setOnClickListener(getClickListener('*'));
+
         Button divideButton = findViewById(R.id.button_divide);
-        divideButton.setOnClickListener(v -> {
-            state.appendExpression('/');
+        divideButton.setOnClickListener(getClickListener('/'));
+    }
+
+    private View.OnClickListener getClickListener(final char op) {
+        return v -> {
+            state.appendExpression(op);
             expressionView.setText(state.getExpression());
             resultView.setText(state.getResult());
-        });
+        };
     }
 }
